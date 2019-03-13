@@ -29,6 +29,7 @@ public class DataResource {
     List<RawEarthquakeData> rawList = _dataService.getEarthquakeData();
     List<RawEarthquakeData> filteredList = new ArrayList<>();
     List<Earthquake> result = new ArrayList<Earthquake>();
+    // filter list if argument exists
     if (filter.isPresent()) {
       for (RawEarthquakeData e : rawList) {
         if (e.getPlace().toLowerCase().contains(filter.get().toLowerCase())) {
@@ -38,13 +39,12 @@ public class DataResource {
     } else {
       filteredList = rawList;
     }
-
+    // convert rawEarthquakeData to Earthquake..
     for (RawEarthquakeData e : filteredList) {
       result.add(rawToEarthquake(e));
     }
 
-    // TODO: sort list by descending magnitude and ascending time
-
+    // sort list by descending magnitude and ascending time
     Comparator<Earthquake> magComparator = Comparator.comparing(Earthquake::getMagnitude).reversed();
     Collections.sort(result, magComparator.thenComparing(Earthquake::getTime));
 
