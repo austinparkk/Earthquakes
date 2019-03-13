@@ -9,6 +9,7 @@ public class TestDataService {
 
     @Test
     public void testSize() {
+        System.out.println(dataService.getEarthquakeData().size());
         assertEquals(dataService.getEarthquakeData().size(), 50);
 
     }

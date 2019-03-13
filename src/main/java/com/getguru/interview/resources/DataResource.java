@@ -74,6 +74,7 @@ public class DataResource {
   }
 
   // Converts String to type Date while rounding up the seconds to whole integers.
+
   public Date stringToDate(String date) throws NumberFormatException, ParseException {
     date = date.substring(0, date.length() - 1);
     String[] dateAndTime = date.split("T");
@@ -84,6 +85,6 @@ public class DataResource {
     String formattedDate = dateAndTime[0] + " " + hour + ":" + minute + ":" + Integer.toString(seconds);
     Date result = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(formattedDate);
     return result;
-
   }
+
 }
