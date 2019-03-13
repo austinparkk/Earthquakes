@@ -1,0 +1,6 @@
+com/getguru/interview/resources/DataResource.class
+com/getguru/interview/db/RawEarthquakeData.class
+com/getguru/interview/InterviewConfiguration.class
+com/getguru/interview/InterviewApplication.class
+com/getguru/interview/resources/Earthquake.class
+com/getguru/interview/db/EarthquakeDataService.class

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.getguru.interview.resources","l":"DataResource"},{"p":"com.getguru.interview.resources","l":"Earthquake"},{"p":"com.getguru.interview.db","l":"EarthquakeDataService"},{"p":"com.getguru.interview","l":"InterviewApplication"},{"p":"com.getguru.interview","l":"InterviewConfiguration"},{"p":"com.getguru.interview.db","l":"RawEarthquakeData"}]
