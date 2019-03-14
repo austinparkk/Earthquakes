@@ -17,31 +17,49 @@ public class EarthquakeDataService {
   @SuppressWarnings("unused")
   private ObjectMapper _objectMapper = new ObjectMapper();
 
+  /*
+   * Reads the raw data from the provided ​earthquake.json file
+   * 
+   * @return a list of ​RawEarthquakeData​ objects
+   */
   public List<RawEarthquakeData> getEarthquakeData() {
+    List<RawEarthquakeData> result = new ArrayList<RawEarthquakeData>();
     InputStream is = getClass().getResourceAsStream("earthquake.json");
     JsonReader reader = Json.createReader(new InputStreamReader(is));
-    JsonArray earthquakeArray = reader.readArray();
-    reader.close();
+    try {
+      JsonArray jsonEarthquakeArray = reader.readArray();
+      result = jsonToRawEarthquakeArray(jsonEarthquakeArray);
+    } catch (Exception e) {
+      System.out.println(e);
+    } finally {
+      reader.close();
+    }
 
-    return toRawEarthquakeArray(earthquakeArray);
+    return result;
   }
 
-  // Takes in a JsonArray and maps each element to RawEarthquakeData object.
-  // returns the resulting list of RawEarthquakeData.
-  public List<RawEarthquakeData> toRawEarthquakeArray(JsonArray array) {
-    List<RawEarthquakeData> earthquakes = new ArrayList<RawEarthquakeData>();
+  /*
+   * Maps each element in the input JsonArray to a RawEarthquakeData object and
+   * returns a list of all resulting objects
+   * 
+   * @param jsonEarthquakeArray the json array to convert
+   * 
+   * @return the resulting list of RawEarthquakeData
+   */
+  public List<RawEarthquakeData> jsonToRawEarthquakeArray(JsonArray jsonEarthquakeArray) {
+    List<RawEarthquakeData> rawEarthquakes = new ArrayList<RawEarthquakeData>();
 
-    for (JsonValue v : array) {
-      String earthquakeString = v.toString();
+    for (JsonValue jsonEarthquake : jsonEarthquakeArray) {
+      String earthquakeString = jsonEarthquake.toString();
       try {
-        RawEarthquakeData earthquake = _objectMapper.readValue(earthquakeString, RawEarthquakeData.class);
-        earthquakes.add(earthquake);
+        RawEarthquakeData rawEarthquake = _objectMapper.readValue(earthquakeString, RawEarthquakeData.class);
+        rawEarthquakes.add(rawEarthquake);
       } catch (Exception e) {
         System.out.println(e);
       }
 
     }
-    return earthquakes;
+    return rawEarthquakes;
   }
 
 }

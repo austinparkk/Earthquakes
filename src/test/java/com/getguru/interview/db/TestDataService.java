@@ -8,8 +8,7 @@ public class TestDataService {
     private EarthquakeDataService dataService = new EarthquakeDataService();
 
     @Test
-    public void testSize() {
-        System.out.println(dataService.getEarthquakeData().size());
+    public void testGetEarthQuakeData() {
         assertEquals(dataService.getEarthquakeData().size(), 50);
 
     }
